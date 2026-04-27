@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Escape the Story</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <div class="scanlines"></div>
+  <div class="floating-orbs"></div>
+  <div id="flashOverlay" class="flash-overlay"></div>
+
+  <button id="soundToggle" class="sound-toggle" onclick="toggleSound()">Sound: Off</button>
+
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="badge">CLASSIFIED SCHOOL FILE</div>
+
+      <h1 class="glitch" data-text="Escape the Story">Escape the Story</h1>
+      <h2>Our Stories in Action</h2>
+
+      <p class="hero-text">
+        Something is deleting the moments that make this school come alive.
+      </p>
+
+      <button onclick="scrollToStory()" class="hero-btn">Begin Transmission</button>
+    </div>
+  </header>
+
+  <main id="story">
+
+    <section class="glass-panel intro-panel">
+      <p class="warning">⚠ SYSTEM ALERT ⚠</p>
+
+      <div class="terminal">
+        <p>Something is wrong.</p>
+        <p>When the bell rang this morning, everything looked normal… but it didn’t feel normal.</p>
+        <p>A student dropped their books. No one helped.</p>
+        <p>A hand went up in class. No one responded.</p>
+        <p>Moments that should have mattered… didn’t happen.</p>
+        <p>It’s as if something is removing the actions that bring this school to life.</p>
+        <p>Just before the final bell, every screen flickered.</p>
+        <p>A message appeared:</p>
+
+        <p class="quote">“Stories are not written in words alone.”</p>
+        <p class="quote">“They are written in what you choose to do.”</p>
+        <p class="quote">“The Eraser has begun.”</p>
+
+        <p>The screen went black.</p>
+        <p>No explanation. No warning.</p>
+        <p>Just one question remains:</p>
+        <p><strong>What is being erased… and how do we stop it?</strong></p>
+      </div>
+    </section>
+
+    <section class="clue-card">
+      <span class="clue-label">CLUE #1</span>
+      <p>
+        Go to the place where stories once lived,<br>
+        before they started disappearing.<br>
+        Rows of them wait, quiet and still,<br>
+        holding the voices you’re no longer hearing.
+      </p>
+      <strong>👉 Start there.</strong>
+    </section>
+
+    <section id="game" class="game-shell">
+      <div class="hud">
+        <div>
+          <span>STORY RESTORATION</span>
+          <h3 id="progressText">Fragments restored: 0 / 3</h3>
+        </div>
+
+        <div class="ring">
+          <span id="percentText">0%</span>
+        </div>
+      </div>
+
+      <div class="progress-bar">
+        <div id="progressFill"></div>
+      </div>
+
+      <div id="fragmentDots" class="fragment-dots"></div>
+
+      <div id="eraserMessage" class="eraser-message">
+        THE ERASER IS STILL ACTIVE...
+      </div>
+
+      <div id="stagesContainer"></div>
+
+      <div id="finalLockContainer"></div>
+
+      <button class="reset-btn" onclick="resetProgress()">Teacher Reset Progress</button>
+    </section>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
