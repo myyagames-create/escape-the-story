@@ -4,40 +4,131 @@
   Passwords are encoded so students cannot read them instantly.
   To make your own password:
   1. Open browser console
-  2. Type: btoa("yourpassword")
+  2. Type: btoa("YOURPASSWORD")
   3. Copy the result into encodedPassword
 
   Current passwords:
-  library  = bGlicmFyeQ==
-  gym      = Z3lt
-  classroom = Y2xhc3Nyb29t
+  TEAMWORK  = VEVBTVdPUks=
+  SEBASTIAN = U0VCQVNUSUFO
+  BCMPRST   = QkNNUFJTVA==
+
+  Final combination:
+  34 36 26
 */
 
 const stages = [
   {
     title: "Stage 1 Unlock",
-    encodedPassword: "bGlicmFyeQ==",
-    lockNumber: "3",
-    story: "A story fragment returns. The school remembers that helping others matters.",
-    clue: "Go to the place where energy echoes, teamwork happens, and footsteps fill the room."
+    encodedPassword: "VEVBTVdPUks=",
+    lockNumber: "36",
+    story: `
+      <strong>Part of the story fixed… sort of</strong><br><br>
+      Okay… that helped a little.<br>
+      But things are still out of order.<br><br>
+      Now the story is skipping around:<br>
+      The ending is happening before the middle.<br>
+      The middle is happening before the beginning.<br>
+      And some parts are just… missing.<br><br>
+      Another message appears:<br>
+      “You fixed ONE piece. There is a lot more.”
+    `,
+    clue: `
+      <strong>CLUE #2</strong><br><br>
+      Now find the place where energy grows,<br>
+      Where movement matters and teamwork shows.<br>
+      Feet move fast and hearts beat strong,<br>
+      It’s where you go to run, jump, and belong.<br><br>
+      Find this space to continue on.
+    `
   },
   {
     title: "Stage 2 Unlock",
-    encodedPassword: "Z3lt",
-    lockNumber: "7",
-    story: "Another fragment returns. The school remembers that action can change the ending.",
-    clue: "Your next clue waits where learning begins, questions are asked, and ideas come alive."
+    encodedPassword: "U0VCQVNUSUFO",
+    lockNumber: "34",
+    story: `
+      <strong>More of the story repaired…</strong><br><br>
+      Now you can see the problem.<br>
+      The story is not broken by accident—<br>
+      it has been scrambled.<br><br>
+      Events are in the wrong order.<br>
+      Things are happening at the wrong time.<br><br>
+      And if the story stays like this…<br>
+      it will not make sense at all.<br><br>
+      A new message appears:<br>
+      “Stories only work when things happen in the right order… can you figure it out?”
+    `,
+    clue: `
+      <strong>CLUE #3</strong><br><br>
+      Now find the place where voices blend,<br>
+      Where notes and rhythms twist and bend.<br>
+      Drums may beat and singers rehearse,<br>
+      Telling a story without a verse.<br><br>
+      Head there next.
+    `
   },
   {
     title: "Stage 3 Unlock",
-    encodedPassword: "Y2xhc3Nyb29t",
-    lockNumber: "1",
-    story: "The final fragment returns. The story is almost whole again.",
-    clue: "Go to the place where decisions are made and the final chest awaits."
+    encodedPassword: "QkNNUFJTVA==",
+    lockNumber: "26",
+    story: `
+      <strong>Final parts loading…</strong><br><br>
+      You are close.<br>
+      The story is almost fixed.<br><br>
+      But one problem remains…<br>
+      Everything is still mixed up.<br><br>
+      The only way to escape the story is to:<br>
+      <strong>put things back in the right order.</strong><br><br>
+      A final message appears:<br>
+      “Fix the order… fix the story.”
+    `,
+    clue: `
+      <strong>COMBINATION PROMPT</strong><br><br>
+      You now have all the numbers.<br>
+      They are not in order.<br><br>
+      Put them back together…<br>
+      before the lock can be opened.
+    `
   }
 ];
 
-const finalCombination = stages.map(stage => stage.lockNumber).join("");
+const correctFinalCombination = "343626";
+const finalCombinationPieces = ["34", "36", "26"];
+
+const finalSuccessStory = `
+  <h2>STORY FIXED</h2>
+  <p class="success">Everything snaps back into place.</p>
+
+  <p>The bell rings at the right time.</p>
+  <p>Classes happen in the right order.</p>
+  <p>The day finally makes sense again.</p>
+
+  <p>A final message appears:</p>
+  <p class="quote">“Nice. You actually fixed it.”</p>
+
+  <p><strong>You escaped the story!</strong></p>
+
+  <hr>
+
+  <h2>FINAL CLUE</h2>
+  <p>
+    In order to truly win, you must find the lock,<br>
+    The final step before you stop the clock.<br>
+    Go to the place where visitors sign in,<br>
+    Where calls are answered and messages begin.<br>
+    Behind the desk at the front you’ll see,<br>
+    The person who keeps things running smoothly.<br>
+    Find them to finish your final task—<br>
+    They hold the lock you need to crack.
+  </p>
+
+  <p><strong>But wait… before they give it to you, take note:</strong></p>
+
+  <p>You must say this sentence they wrote:</p>
+
+  <p class="quote">
+    “The code is cracked, the story is back, now we are here to claim the snack!”
+  </p>
+`;
 
 const stagesContainer = document.getElementById("stagesContainer");
 const finalLockContainer = document.getElementById("finalLockContainer");
@@ -86,9 +177,9 @@ function renderStages() {
       card.innerHTML = `
         <h2>✅ ${stage.title}</h2>
         <p class="success">Story fragment restored.</p>
-        <p class="lock-number">Combination Number ${i + 1}: ${stage.lockNumber}</p>
+        <p class="lock-number">The part repaired reveals number ${stage.lockNumber}.</p>
         <p>${stage.story}</p>
-        <p><strong>Next Clue:</strong> ${stage.clue}</p>
+        <p><strong>Next Clue:</strong><br>${stage.clue}</p>
       `;
     } else {
       card.innerHTML = `
@@ -124,19 +215,22 @@ function renderFinalLock() {
   if (finalUnlocked) {
     card.innerHTML = `
       <h2>🏆 Final Sequence Restored</h2>
-      <p class="success">The story has been restored.</p>
+      <p class="success">Correct combination accepted.</p>
 
       <div class="final-combo-display">
-        ${finalCombination.split("").map(num => `<div class="combo-box">${num}</div>`).join("")}
+        ${finalCombinationPieces.map(num => `<div class="combo-box">${num}</div>`).join("")}
       </div>
 
-      <p>Take the restored combination to the final destination.</p>
-      <p><strong>The Eraser has lost control of the story.</strong></p>
+      ${finalSuccessStory}
     `;
   } else {
     card.innerHTML = `
       <h2>🔐 Final Lock Screen</h2>
-      <p>All fragments are restored. Enter the full combination to complete the system.</p>
+      <p>
+        You now have all the numbers.<br>
+        They are not in order.<br>
+        Put them back together before the lock can be opened.
+      </p>
 
       <input 
         id="finalComboInput" 
@@ -167,6 +261,10 @@ function handleFinalEnter(event) {
   }
 }
 
+function normalizeFinalCombination(value) {
+  return value.replace(/\s+/g, "").replace(/-/g, "").trim();
+}
+
 function checkPassword(index) {
   const input = document.getElementById(`password-${index}`);
   const message = document.getElementById(`message-${index}`);
@@ -182,9 +280,9 @@ function checkPassword(index) {
 
     message.innerHTML = `
       <p class="success">Story fragment restored.</p>
-      <p class="lock-number">Combination Number ${index + 1}: ${stages[index].lockNumber}</p>
+      <p class="lock-number">The part repaired reveals number ${stages[index].lockNumber}.</p>
       <p>${stages[index].story}</p>
-      <p><strong>Next Clue:</strong> ${stages[index].clue}</p>
+      <p><strong>Next Clue:</strong><br>${stages[index].clue}</p>
     `;
 
     setTimeout(renderStages, 1100);
@@ -204,9 +302,9 @@ function checkFinalCombination() {
   const input = document.getElementById("finalComboInput");
   const message = document.getElementById("finalMessage");
 
-  const enteredCombo = input.value.trim();
+  const enteredCombo = normalizeFinalCombination(input.value);
 
-  if (enteredCombo === finalCombination) {
+  if (enteredCombo === correctFinalCombination) {
     finalUnlocked = true;
     localStorage.setItem("escapeFinalUnlocked", "true");
 
