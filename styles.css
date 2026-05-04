@@ -253,7 +253,7 @@ main {
 }
 
 .terminal {
-  font-family: "Courier New", monospace;
+  font-family: "Courier New", Courier, monospace;
   line-height: 1.75;
   color: #dfefff;
 }
@@ -324,6 +324,7 @@ main {
   border: 1px solid rgba(255,209,102,.55);
   color: var(--gold);
   background: rgba(0,0,0,.28);
+  font-family: "Courier New", Courier, monospace;
   font-weight: 900;
   letter-spacing: 4px;
   text-transform: uppercase;
@@ -331,10 +332,12 @@ main {
 }
 
 .clue-card p {
-  font-size: 1.25rem;
-  line-height: 1.75;
-  color: #eaffff;
-  letter-spacing: .25px;
+  font-family: "Courier New", Courier, monospace;
+  font-weight: 700;
+  font-size: 1.2rem;
+  line-height: 1.85;
+  color: #f4fbff;
+  letter-spacing: .2px;
 }
 
 /* GAME AREA */
@@ -443,12 +446,13 @@ main {
 }
 
 .stage-card {
-  font-family: "Courier New", monospace;
+  font-family: "Courier New", Courier, monospace;
   line-height: 1.6;
   color: #dfefff;
 }
 
 .stage-card p {
+  font-family: "Courier New", Courier, monospace;
   font-size: 1.05rem;
   letter-spacing: .2px;
 }
@@ -512,19 +516,42 @@ main {
   color: var(--cyan);
   background: rgba(0,0,0,.28);
   border: 1px solid rgba(0,245,255,.45);
-  font-family: Inter, Arial, Helvetica, sans-serif;
+  font-family: "Courier New", Courier, monospace;
   font-weight: 900;
-  letter-spacing: 3px;
+  letter-spacing: 4px;
   text-transform: uppercase;
   box-shadow: 0 0 22px rgba(0,245,255,.13);
 }
 
 .next-clue-box p {
   margin: 0;
-  color: #eaffff;
-  font-family: Inter, Arial, Helvetica, sans-serif;
-  font-size: 1.1rem;
-  line-height: 1.75;
+  color: #f4fbff;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 1.05rem;
+  font-weight: 700;
+  line-height: 1.85;
+  letter-spacing: .2px;
+}
+
+.clue-line {
+  display: block;
+  opacity: 0;
+  transform: translateY(8px);
+  animation: clueLineIn .55s ease forwards;
+}
+
+.clue-line:nth-child(1) { animation-delay: .1s; }
+.clue-line:nth-child(2) { animation-delay: .28s; }
+.clue-line:nth-child(3) { animation-delay: .46s; }
+.clue-line:nth-child(4) { animation-delay: .64s; }
+.clue-line:nth-child(5) { animation-delay: .82s; }
+.clue-line:nth-child(6) { animation-delay: 1s; }
+
+@keyframes clueLineIn {
+  to {
+    opacity: 1;
+    transform: none;
+  }
 }
 
 /* FORM */
@@ -566,6 +593,39 @@ input:focus {
 .final-lock-card {
   border-color: rgba(255,209,102,.45);
   box-shadow: 0 0 50px rgba(255,209,102,.12);
+  font-family: "Courier New", Courier, monospace;
+  letter-spacing: .2px;
+  line-height: 1.85;
+  color: #f4fbff;
+}
+
+.final-lock-card p {
+  font-family: "Courier New", Courier, monospace;
+  font-size: 1.05rem;
+  line-height: 1.85;
+  color: #eaffff;
+}
+
+.final-lock-card h2 {
+  font-family: "Courier New", Courier, monospace;
+  font-weight: 900;
+  letter-spacing: 3px;
+  color: var(--cyan);
+}
+
+.final-lock-card input {
+  font-family: "Courier New", Courier, monospace;
+  letter-spacing: 1px;
+  color: var(--cyan);
+  background: rgba(0, 0, 0, 0.55);
+  border: 1px solid rgba(0,245,255,.35);
+  box-shadow: inset 0 0 12px rgba(0,245,255,.08);
+}
+
+.final-lock-card button {
+  font-family: "Courier New", Courier, monospace;
+  letter-spacing: 2px;
+  font-weight: 900;
 }
 
 .final-combo-display {
@@ -782,7 +842,7 @@ input:focus {
   border-radius: 22px;
   background: rgba(0,0,0,.38);
   border: 1px solid rgba(0,245,255,.25);
-  font-family: "Courier New", monospace;
+  font-family: "Courier New", Courier, monospace;
   line-height: 1.65;
   box-shadow: inset 0 0 30px rgba(0,245,255,.04);
 }
@@ -803,6 +863,7 @@ input:focus {
     inset 0 0 35px rgba(255,255,255,.05);
   position: relative;
   overflow: hidden;
+  font-family: "Courier New", Courier, monospace;
 }
 
 .final-mission-file::before {
@@ -824,16 +885,21 @@ input:focus {
 }
 
 .final-mission-file h2 {
+  font-family: "Courier New", Courier, monospace;
   color: var(--gold);
   text-transform: uppercase;
-  letter-spacing: 3px;
+  letter-spacing: 5px;
   font-size: clamp(1.7rem, 4vw, 2.5rem);
   text-shadow: 0 0 20px rgba(255,209,102,.55);
 }
 
 .final-mission-file p {
+  font-family: "Courier New", Courier, monospace;
+  font-weight: 700;
   font-size: 1.1rem;
-  line-height: 1.75;
+  line-height: 1.9;
+  letter-spacing: .3px;
+  color: #f4fbff;
 }
 
 .secret-sentence {
@@ -845,8 +911,11 @@ input:focus {
     rgba(0,0,0,.48);
   border: 1px solid rgba(109,255,138,.5);
   color: var(--green);
-  font-weight: 1000;
+  font-family: "Courier New", Courier, monospace;
+  font-weight: 900;
   font-size: 1.15rem;
+  line-height: 1.8;
+  letter-spacing: .4px;
   text-align: center;
   box-shadow: 0 0 32px rgba(109,255,138,.15);
 }
@@ -945,135 +1014,7 @@ body.erased {
   100% { transform: none; filter: none; }
 }
 
-@media (max-width: 720px) {
-  .hero-inner,
-  .intro-panel,
-  .clue-card,
-  .game-shell {
-    padding: 22px;
-    border-radius: 22px;
-  }
-
-  h1 {
-    letter-spacing: -2px;
-  }
-
-  .hud {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  .final-combo-display,
-  .victory-combo-reveal {
-    flex-direction: column;
-  }
-
-  .reward-grid {
-    grid-template-columns: 1fr;
-  }
-}.clue-card {
-  font-family: "Courier New", monospace;
-  letter-spacing: 0.5px;
-  color: #eaffff;
-}
-
-.clue-card p {
-  font-family: "Courier New", monospace;
-  font-size: 1.2rem;
-  line-height: 1.8;
-  color: #eaffff;
-}.next-clue-box {
-  font-family: "Courier New", monospace;
-}
-
-.next-clue-box p {
-  font-family: "Courier New", monospace;
-  font-size: 1.05rem;
-  line-height: 1.8;
-  letter-spacing: 0.4px;
-  color: #dffcff;
-}
-.next-clue-title {
-  font-family: "Courier New", monospace;
-  letter-spacing: 4px;
-  font-weight: 900;
-}
-.final-mission-file {
-  font-family: "Courier New", monospace;
-}
-
-.final-mission-file p {
-  font-family: "Courier New", monospace;
-  font-size: 1.1rem;
-  line-height: 1.9;
-  letter-spacing: 0.5px;
-  color: #eaffff;
-}
-
-.final-mission-file h2 {
-  font-family: "Courier New", monospace;
-  letter-spacing: 5px;
-}
-.secret-sentence {
-  font-family: "Courier New", monospace;
-  letter-spacing: 1px;
-  line-height: 1.8;
-}
-/* FINAL FONT FIX — MAKE ALL CLUE TEXT MATCH STORY FIXED TERMINAL STYLE */
-
-.clue-card,
-.clue-card p,
-.next-clue-box,
-.next-clue-box p,
-.final-mission-file,
-.final-mission-file p,
-.secret-sentence {
-  font-family: "Courier New", Courier, monospace !important;
-  font-weight: 700 !important;
-  letter-spacing: 0.2px !important;
-  line-height: 1.85 !important;
-  color: #f4fbff !important;
-}
-
-/* Clue #1 label */
-.clue-label {
-  font-family: "Courier New", Courier, monospace !important;
-  font-weight: 900 !important;
-  letter-spacing: 4px !important;
-}
-
-/* Next Clue label */
-.next-clue-title {
-  font-family: "Courier New", Courier, monospace !important;
-  font-weight: 900 !important;
-  letter-spacing: 4px !important;
-}
-
-/* Final Clue heading */
-.final-mission-file h2 {
-  font-family: "Courier New", Courier, monospace !important;
-  font-weight: 900 !important;
-  letter-spacing: 5px !important;
-  color: var(--gold) !important;
-}
-
-/* Secret phrase box */
-.secret-sentence,
-.secret-sentence strong {
-  font-family: "Courier New", Courier, monospace !important;
-  font-weight: 900 !important;
-  color: var(--green) !important;
-}
-
-/* Keep victory title cinematic, not terminal */
-.victory-title,
-.victory-kicker,
-.lock-accepted,
-.reward-tile,
-.reward-tile strong {
-  font-family: Inter, Arial, Helvetica, sans-serif !important;
-}/* MAKE THE SYSTEM FEEL ALIVE */
-
+/* MAKE THE SYSTEM FEEL ALIVE */
 .hero-inner,
 .glass-panel,
 .clue-card,
@@ -1112,7 +1053,9 @@ body.erased {
   96% { opacity: 1; }
 }
 
-.next-clue-box {
+.next-clue-box,
+.final-mission-file,
+.clue-card {
   position: relative;
   overflow: hidden;
 }
@@ -1140,46 +1083,6 @@ body.erased {
   100% { transform: translateX(120%); }
 }
 
-.clue-line {
-  display: block;
-  opacity: 0;
-  transform: translateY(8px);
-  animation: clueLineIn .55s ease forwards;
-}
-
-.clue-line:nth-child(1) { animation-delay: .1s; }
-.clue-line:nth-child(2) { animation-delay: .28s; }
-.clue-line:nth-child(3) { animation-delay: .46s; }
-.clue-line:nth-child(4) { animation-delay: .64s; }
-.clue-line:nth-child(5) { animation-delay: .82s; }
-.clue-line:nth-child(6) { animation-delay: 1s; }
-
-@keyframes clueLineIn {
-  to {
-    opacity: 1;
-    transform: none;
-  }
-}
-
-.stage-card.restored-alive {
-  animation: restoredPulse 1.1s ease, systemBreath 5s ease-in-out infinite;
-}
-
-@keyframes restoredPulse {
-  0% {
-    transform: scale(.98);
-    filter: brightness(1);
-  }
-  45% {
-    transform: scale(1.01);
-    filter: brightness(1.35);
-  }
-  100% {
-    transform: scale(1);
-    filter: brightness(1);
-  }
-}
-
 body.system-glitch {
   animation: systemGlitch .45s ease;
 }
@@ -1191,48 +1094,31 @@ body.system-glitch {
   60% { transform: translateX(-2px); }
   100% { transform: none; filter: none; }
 }
-/* REMOVE DUPLICATE NEXT CLUE BEFORE FINAL LOCK */
 
-/* Hide Next Clue box ONLY on the last stage */
-.stage-card:last-of-type .next-clue-box {
-  display: none;
-}
-/* FINAL LOCK SCREEN — MATCH TERMINAL STYLE */
+@media (max-width: 720px) {
+  .hero-inner,
+  .intro-panel,
+  .clue-card,
+  .game-shell {
+    padding: 22px;
+    border-radius: 22px;
+  }
 
-.final-lock-card {
-  font-family: "Courier New", Courier, monospace;
-  letter-spacing: 0.2px;
-  line-height: 1.85;
-  color: #f4fbff;
-}
+  h1 {
+    letter-spacing: -2px;
+  }
 
-.final-lock-card p {
-  font-family: "Courier New", Courier, monospace;
-  font-size: 1.05rem;
-  line-height: 1.85;
-  color: #eaffff;
-}
+  .hud {
+    flex-direction: column;
+    text-align: center;
+  }
 
-.final-lock-card h2 {
-  font-family: "Courier New", Courier, monospace;
-  font-weight: 900;
-  letter-spacing: 3px;
-  color: var(--cyan);
-}
+  .final-combo-display,
+  .victory-combo-reveal {
+    flex-direction: column;
+  }
 
-/* INPUT FIELD — MAKE IT FEEL LIKE TERMINAL */
-.final-lock-card input {
-  font-family: "Courier New", Courier, monospace;
-  letter-spacing: 1px;
-  color: var(--cyan);
-  background: rgba(0, 0, 0, 0.55);
-  border: 1px solid rgba(0,245,255,.35);
-  box-shadow: inset 0 0 12px rgba(0,245,255,.08);
-}
-
-/* BUTTON — MATCH SYSTEM STYLE */
-.final-lock-card button {
-  font-family: "Courier New", Courier, monospace;
-  letter-spacing: 2px;
-  font-weight: 900;
+  .reward-grid {
+    grid-template-columns: 1fr;
+  }
 }

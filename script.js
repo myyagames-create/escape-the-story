@@ -75,22 +75,26 @@ const stages = [
       A final message appears:<br>
       “Fix the order… fix the story.”
     `,
-    clue: `
-      You now have all the numbers.<br>
-      They are not in order.<br><br>
-      Put them back together…<br>
-      before the lock can be opened.
-    `
+    clue: ``
   }
 ];
 
 const finalCombinationPieces = ["34", "36", "26"];
 
 function terminalClueBox(clueText) {
+  const clueLines = clueText
+    .split("<br>")
+    .map(line => line.trim())
+    .filter(line => line.length > 0)
+    .map(line => `<span class="clue-line" style="${clueTextStyle}">${line}</span>`)
+    .join("");
+
+  if (!clueLines) return "";
+
   return `
     <div class="next-clue-box">
       <span class="next-clue-title" style="${clueTitleStyle}">Next Clue</span>
-      <p style="${clueTextStyle}">${clueText}</p>
+      <p style="${clueTextStyle}">${clueLines}</p>
     </div>
   `;
 }
@@ -378,6 +382,7 @@ function checkFinalCombination() {
 
 function playSuccessEffect() {
   document.body.classList.add("success-flash");
+  document.body.classList.add("system-glitch");
   flashOverlay.classList.add("active");
 
   if (soundOn) {
@@ -387,12 +392,14 @@ function playSuccessEffect() {
 
   setTimeout(() => {
     document.body.classList.remove("success-flash");
+    document.body.classList.remove("system-glitch");
     flashOverlay.classList.remove("active");
   }, 800);
 }
 
 function playVictoryEffect() {
   document.body.classList.add("success-flash");
+  document.body.classList.add("system-glitch");
   flashOverlay.classList.add("active");
 
   if (soundOn) {
@@ -404,6 +411,7 @@ function playVictoryEffect() {
 
   setTimeout(() => {
     document.body.classList.remove("success-flash");
+    document.body.classList.remove("system-glitch");
     flashOverlay.classList.remove("active");
   }, 900);
 }
