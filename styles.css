@@ -1,205 +1,103 @@
-* {
-  box-sizing: border-box;
-}
+/* ---------- CLUE SYSTEM ---------- */
 
-:root {
-  --cyan: #00f5ff;
-  --gold: #ffd166;
-  --red: #ff4d6d;
-  --green: #6dff8a;
-  --dark: #04050b;
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  margin: 0;
-  color: #f4fbff;
-  font-family: Inter, Arial, Helvetica, sans-serif;
-  background:
-    radial-gradient(circle at 20% 20%, rgba(0,245,255,.12), transparent 28%),
-    radial-gradient(circle at 80% 10%, rgba(255,209,102,.10), transparent 25%),
-    radial-gradient(circle at 50% 90%, rgba(255,77,109,.10), transparent 32%),
-    #04050b;
-}
-
-/* ---------------- HERO / BACKGROUND ---------------- */
-
-.hero::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(rgba(0,0,0,.1), rgba(0,0,0,.35)),
-    url("background.jpg");
-  background-size: cover;
-  background-position: center;
-  z-index: -1;
-}
-
-/* ---------------- TERMINAL TEXT ---------------- */
-
-.terminal {
-  font-family: "Courier New", monospace;
-  line-height: 1.75;
-  color: #dfefff;
-}
-
-/* ---------------- STAGE CARD TYPOGRAPHY FIX ---------------- */
-
-.stage-card {
-  font-family: Inter, Arial, Helvetica, sans-serif;
-  line-height: 1.6;
-  color: #dfefff;
-}
-
-.stage-card p {
-  font-size: 1.05rem;
-  letter-spacing: 0.3px;
-}
-
-.stage-card strong {
-  color: #eaffff;
-  font-weight: 700;
-}
-
-.stage-card .success {
-  font-family: "Courier New", monospace;
-  letter-spacing: 1px;
-}
-
-.stage-card .lock-number {
-  font-family: Inter, Arial, Helvetica, sans-serif;
-  font-size: 1.4rem;
-  font-weight: 900;
-  color: var(--gold);
-}
-
-/* ---------------- CLUE STYLE ENHANCEMENT ---------------- */
-
-.stage-card p:last-of-type {
-  margin-top: 18px;
-  padding-top: 12px;
-  border-top: 1px solid rgba(0,245,255,.2);
-  color: #d9faff;
-}
-
-/* ---------------- INPUT + BUTTON ---------------- */
-
-input {
-  width: 100%;
-  margin-top: 12px;
-  padding: 16px;
-  border-radius: 16px;
-  border: 1px solid rgba(0,245,255,.25);
-  background: rgba(0,0,0,.42);
-  color: white;
-  font-size: 1rem;
-}
-
-input:focus {
-  border-color: var(--cyan);
-  box-shadow: 0 0 18px rgba(0,245,255,.25);
-}
-
-button {
-  border: 1px solid rgba(0,245,255,.7);
-  background: linear-gradient(135deg, rgba(0,245,255,.22), rgba(255,209,102,.10));
-  color: white;
-  border-radius: 999px;
-  padding: 14px 24px;
-  font-weight: 900;
-  cursor: pointer;
-  margin-top: 14px;
-}
-
-/* ---------------- FINAL VICTORY SCREEN ---------------- */
-
-.victory-screen {
+.clue-card {
+  margin: 32px 0;
+  padding: 34px;
   text-align: center;
-  padding: 40px;
-  border-radius: 30px;
+  border-radius: 28px;
+  border: 1px solid rgba(255,209,102,.45);
   background:
-    radial-gradient(circle at top, rgba(255,209,102,.25), transparent 40%),
-    linear-gradient(145deg, rgba(5,8,18,.95), rgba(0,0,0,.95));
-  border: 1px solid rgba(255,209,102,.6);
-  box-shadow: 0 0 80px rgba(255,209,102,.2);
+    radial-gradient(circle at top, rgba(255,209,102,.15), transparent 40%),
+    linear-gradient(145deg, rgba(10,16,30,.85), rgba(5,8,18,.75));
+  box-shadow:
+    0 0 40px rgba(255,209,102,.12),
+    inset 0 0 25px rgba(255,255,255,.03);
 }
 
-.victory-title {
-  font-size: clamp(2.5rem, 6vw, 5rem);
-  color: var(--gold);
-  text-transform: uppercase;
-  text-shadow: 0 0 20px rgba(255,209,102,.8);
-}
-
-.victory-subtitle {
+.clue-card p {
+  font-size: 1.25rem;
+  line-height: 1.7;
   color: #eaffff;
-  font-size: 1.2rem;
-  margin-bottom: 20px;
 }
 
-/* Animated number reveal */
+/* ---------- NEXT CLUE (NEW POP STYLE) ---------- */
 
-.victory-combo-reveal {
-  display: flex;
-  justify-content: center;
-  gap: 14px;
-  margin: 20px 0;
-}
-
-.victory-number {
+.next-clue-box {
+  margin-top: 22px;
   padding: 20px;
-  border-radius: 16px;
-  border: 1px solid rgba(255,209,102,.5);
-  font-size: 2.5rem;
+  border-radius: 20px;
+  border: 1px solid rgba(0,245,255,.45);
+  background:
+    linear-gradient(145deg, rgba(0,245,255,.12), rgba(0,0,0,.35));
+  box-shadow:
+    0 0 25px rgba(0,245,255,.18),
+    inset 0 0 20px rgba(255,255,255,.04);
+}
+
+.next-clue-title {
+  display: block;
+  color: var(--cyan);
   font-weight: 900;
-  color: var(--gold);
-  background: rgba(0,0,0,.4);
-  animation: revealNumber .6s ease both;
+  letter-spacing: 3px;
+  margin-bottom: 10px;
+  text-transform: uppercase;
 }
 
-.victory-number:nth-child(2) { animation-delay: .2s; }
-.victory-number:nth-child(3) { animation-delay: .4s; }
-
-@keyframes revealNumber {
-  from {
-    opacity: 0;
-    transform: translateY(20px) scale(.8);
-  }
-  to {
-    opacity: 1;
-    transform: none;
-  }
-}
-
-/* ---------------- FINAL MESSAGE ---------------- */
+/* ---------- FINAL CLUE (UPGRADED REWARD FILE) ---------- */
 
 .final-mission-file {
-  margin-top: 30px;
-  padding: 24px;
-  border-radius: 20px;
-  background: rgba(0,0,0,.4);
-  border: 1px solid rgba(255,209,102,.4);
+  margin-top: 40px;
+  padding: 32px;
+  border-radius: 28px;
+  border: 1px solid rgba(255,209,102,.6);
+  background:
+    radial-gradient(circle at top, rgba(255,209,102,.25), transparent 40%),
+    linear-gradient(145deg, rgba(0,0,0,.55), rgba(10,16,30,.9));
+  box-shadow:
+    0 0 60px rgba(255,209,102,.25),
+    inset 0 0 35px rgba(255,255,255,.05);
+  position: relative;
+  overflow: hidden;
 }
 
+/* glow sweep effect */
+.final-mission-file::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  background: linear-gradient(120deg, transparent, rgba(255,209,102,.25), transparent);
+  animation: finalSweep 6s infinite;
+}
+
+@keyframes finalSweep {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(100%); }
+}
+
+.final-mission-file h2 {
+  color: var(--gold);
+  font-size: 2rem;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+}
+
+.final-mission-file p {
+  font-size: 1.1rem;
+  line-height: 1.7;
+}
+
+/* SECRET PHRASE */
+
 .secret-sentence {
-  margin-top: 20px;
-  padding: 18px;
-  border-radius: 16px;
-  background: rgba(0,0,0,.5);
-  border: 1px solid rgba(109,255,138,.4);
+  margin-top: 24px;
+  padding: 22px;
+  border-radius: 20px;
+  border: 1px solid rgba(109,255,138,.5);
+  background:
+    linear-gradient(145deg, rgba(109,255,138,.15), rgba(0,0,0,.5));
   color: var(--green);
   font-weight: 900;
   text-align: center;
-}
-
-/* ---------------- SMALL SCREEN ---------------- */
-
-@media (max-width: 720px) {
-  .victory-combo-reveal {
-    flex-direction: column;
-  }
+  font-size: 1.15rem;
+  box-shadow: 0 0 30px rgba(109,255,138,.2);
 }

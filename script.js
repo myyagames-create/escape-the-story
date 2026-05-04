@@ -1,25 +1,7 @@
-/* 
-  EASY EDIT SECTION
-
-  Passwords are encoded so students cannot read them instantly.
-  To make your own password:
-  1. Open browser console
-  2. Type: btoa("YOURPASSWORD")
-  3. Copy the result into encodedPassword
-
-  Current passwords:
-  TEAMWORK  = VEVBTVdPUks=
-  SEBASTIAN = U0VCQVNUSUFO
-  BCMPRST   = QkNNUFJTVA==
-
-  Final combination:
-  34 36 26
-*/
-
 const stages = [
   {
     title: "Stage 1 Unlock",
-    encodedPassword: "VEVBTVdPUks=",
+    keyId: "alpha",
     lockNumber: "36",
     story: `
       <strong>Part of the story fixed… sort of</strong><br><br>
@@ -42,7 +24,7 @@ const stages = [
   },
   {
     title: "Stage 2 Unlock",
-    encodedPassword: "U0VCQVNUSUFO",
+    keyId: "bravo",
     lockNumber: "34",
     story: `
       <strong>More of the story repaired…</strong><br><br>
@@ -66,7 +48,7 @@ const stages = [
   },
   {
     title: "Stage 3 Unlock",
-    encodedPassword: "QkNNUFJTVA==",
+    keyId: "charlie",
     lockNumber: "26",
     story: `
       <strong>Final parts loading…</strong><br><br>
@@ -88,7 +70,6 @@ const stages = [
   }
 ];
 
-const correctFinalCombination = "343626";
 const finalCombinationPieces = ["34", "36", "26"];
 
 const finalSuccessStory = `
@@ -98,9 +79,7 @@ const finalSuccessStory = `
     </div>
 
     <div class="victory-kicker">System Fully Restored</div>
-
     <h2 class="victory-title">Mission Complete</h2>
-
     <p class="victory-subtitle">The story is back online.</p>
 
     <div class="victory-combo-reveal">
@@ -131,20 +110,17 @@ const finalSuccessStory = `
 
     <div class="victory-story-file">
       <p class="success">STORY FIXED</p>
-
       <p>Everything snaps back into place.</p>
       <p>The bell rings at the right time.</p>
       <p>Classes happen in the right order.</p>
       <p>The day finally makes sense again.</p>
-
       <p>A final message appears:</p>
       <p class="quote">“Nice. You actually fixed it.”</p>
-
       <p><strong>You escaped the story!</strong></p>
     </div>
 
     <div class="final-mission-file">
-      <h2>FINAL CLUE</h2>
+      <h2>FINAL CLUE UNLOCKED</h2>
 
       <p>
         In order to truly win, you must find the lock,<br>
@@ -182,8 +158,19 @@ function scrollToStory() {
   document.getElementById("story").scrollIntoView({ behavior: "smooth" });
 }
 
-function decodePassword(encodedPassword) {
-  return atob(encodedPassword).toLowerCase();
+function getVaultValue(id) {
+  const vault = {
+    alpha: [[84, 69], [65, 77], [87, 79], [82, 75]],
+    bravo: [[83, 69], [66, 65], [83, 84], [73, 65], [78]],
+    charlie: [[66, 67], [77, 80], [82, 83], [84]],
+    omega: [[51, 52], [51, 54], [50, 54]]
+  };
+
+  return vault[id]
+    .flat()
+    .map(code => String.fromCharCode(code))
+    .join("")
+    .toLowerCase();
 }
 
 function renderStages() {
@@ -214,7 +201,11 @@ function renderStages() {
         <p class="success">Story fragment restored.</p>
         <p class="lock-number">The part repaired reveals number ${stage.lockNumber}.</p>
         <p>${stage.story}</p>
-        <p><strong>Next Clue:</strong><br><br>${stage.clue}</p>
+
+        <div class="next-clue-box">
+          <span class="next-clue-title">Next Clue</span>
+          <p>${stage.clue}</p>
+        </div>
       `;
     } else {
       card.innerHTML = `
@@ -288,7 +279,7 @@ function handleFinalEnter(event) {
 }
 
 function normalizeFinalCombination(value) {
-  return value.replace(/\s+/g, "").replace(/-/g, "").trim();
+  return value.replace(/\s+/g, "").replace(/-/g, "").trim().toLowerCase();
 }
 
 function checkPassword(index) {
@@ -296,7 +287,7 @@ function checkPassword(index) {
   const message = document.getElementById(`message-${index}`);
 
   const enteredPassword = input.value.trim().toLowerCase();
-  const correctPassword = decodePassword(stages[index].encodedPassword);
+  const correctPassword = getVaultValue(stages[index].keyId);
 
   if (enteredPassword === correctPassword) {
     progress = index + 1;
@@ -308,14 +299,22 @@ function checkPassword(index) {
       <p class="success">Story fragment restored.</p>
       <p class="lock-number">The part repaired reveals number ${stages[index].lockNumber}.</p>
       <p>${stages[index].story}</p>
-      <p><strong>Next Clue:</strong><br><br>${stages[index].clue}</p>
+
+      <div class="next-clue-box">
+        <span class="next-clue-title">Next Clue</span>
+        <p>${stages[index].clue}</p>
+      </div>
     `;
 
     setTimeout(renderStages, 1100);
 
   } else {
     playErrorEffect();
-    message.innerHTML = `<p class="error">Access denied. The story remains incomplete.</p>`;
+
+    message.innerHTML = `
+      <p class="error">Access denied. The story remains incomplete.</p>
+    `;
+
     input.classList.add("shake");
 
     setTimeout(() => {
@@ -329,8 +328,9 @@ function checkFinalCombination() {
   const message = document.getElementById("finalMessage");
 
   const enteredCombo = normalizeFinalCombination(input.value);
+  const correctCombo = getVaultValue("omega");
 
-  if (enteredCombo === correctFinalCombination) {
+  if (enteredCombo === correctCombo) {
     finalUnlocked = true;
     localStorage.setItem("escapeFinalUnlocked", "true");
 
