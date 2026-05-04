@@ -1,3 +1,17 @@
+const clueTextStyle = `
+  font-family: "Courier New", Courier, monospace;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  line-height: 1.85;
+  color: #f4fbff;
+`;
+
+const clueTitleStyle = `
+  font-family: "Courier New", Courier, monospace;
+  font-weight: 900;
+  letter-spacing: 4px;
+`;
+
 const stages = [
   {
     title: "Stage 1 Unlock",
@@ -72,6 +86,15 @@ const stages = [
 
 const finalCombinationPieces = ["34", "36", "26"];
 
+function terminalClueBox(clueText) {
+  return `
+    <div class="next-clue-box">
+      <span class="next-clue-title" style="${clueTitleStyle}">Next Clue</span>
+      <p style="${clueTextStyle}">${clueText}</p>
+    </div>
+  `;
+}
+
 const finalSuccessStory = `
   <div class="victory-screen">
     <div class="victory-particles">
@@ -79,7 +102,9 @@ const finalSuccessStory = `
     </div>
 
     <div class="victory-kicker">System Fully Restored</div>
+
     <h2 class="victory-title">Mission Complete</h2>
+
     <p class="victory-subtitle">The story is back online.</p>
 
     <div class="victory-combo-reveal">
@@ -110,19 +135,22 @@ const finalSuccessStory = `
 
     <div class="victory-story-file">
       <p class="success">STORY FIXED</p>
+
       <p>Everything snaps back into place.</p>
       <p>The bell rings at the right time.</p>
       <p>Classes happen in the right order.</p>
       <p>The day finally makes sense again.</p>
+
       <p>A final message appears:</p>
       <p class="quote">“Nice. You actually fixed it.”</p>
+
       <p><strong>You escaped the story!</strong></p>
     </div>
 
     <div class="final-mission-file">
-      <h2>FINAL CLUE UNLOCKED</h2>
+      <h2 style="${clueTitleStyle} color: var(--gold);">FINAL CLUE UNLOCKED</h2>
 
-      <p>
+      <p style="${clueTextStyle}">
         In order to truly win, you must find the lock,<br>
         The final step before you stop the clock.<br>
         Go to the place where visitors sign in,<br>
@@ -133,7 +161,7 @@ const finalSuccessStory = `
         They hold the lock you need to crack.
       </p>
 
-      <div class="secret-sentence">
+      <div class="secret-sentence" style="${clueTextStyle} color: var(--green); font-weight: 900; text-align: center;">
         Before they give it to you, say:<br><br>
         “The code is cracked, the story is back, now we are here to claim the snack!”
       </div>
@@ -201,11 +229,7 @@ function renderStages() {
         <p class="success">Story fragment restored.</p>
         <p class="lock-number">The part repaired reveals number ${stage.lockNumber}.</p>
         <p>${stage.story}</p>
-
-        <div class="next-clue-box">
-          <span class="next-clue-title">Next Clue</span>
-          <p>${stage.clue}</p>
-        </div>
+        ${terminalClueBox(stage.clue)}
       `;
     } else {
       card.innerHTML = `
@@ -299,11 +323,7 @@ function checkPassword(index) {
       <p class="success">Story fragment restored.</p>
       <p class="lock-number">The part repaired reveals number ${stages[index].lockNumber}.</p>
       <p>${stages[index].story}</p>
-
-      <div class="next-clue-box">
-        <span class="next-clue-title">Next Clue</span>
-        <p>${stages[index].clue}</p>
-      </div>
+      ${terminalClueBox(stages[index].clue)}
     `;
 
     setTimeout(renderStages, 1100);
