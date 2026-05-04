@@ -33,7 +33,6 @@ const stages = [
       “You fixed ONE piece. There is a lot more.”
     `,
     clue: `
-      <strong>CLUE #2</strong><br><br>
       Now find the place where energy grows,<br>
       Where movement matters and teamwork shows.<br>
       Feet move fast and hearts beat strong,<br>
@@ -58,7 +57,6 @@ const stages = [
       “Stories only work when things happen in the right order… can you figure it out?”
     `,
     clue: `
-      <strong>CLUE #3</strong><br><br>
       Now find the place where voices blend,<br>
       Where notes and rhythms twist and bend.<br>
       Drums may beat and singers rehearse,<br>
@@ -82,7 +80,6 @@ const stages = [
       “Fix the order… fix the story.”
     `,
     clue: `
-      <strong>COMBINATION PROMPT</strong><br><br>
       You now have all the numbers.<br>
       They are not in order.<br><br>
       Put them back together…<br>
@@ -95,39 +92,55 @@ const correctFinalCombination = "343626";
 const finalCombinationPieces = ["34", "36", "26"];
 
 const finalSuccessStory = `
-  <h2>STORY FIXED</h2>
-  <p class="success">Everything snaps back into place.</p>
+  <div class="victory-card">
+    <div class="badge">MISSION COMPLETE</div>
 
-  <p>The bell rings at the right time.</p>
-  <p>Classes happen in the right order.</p>
-  <p>The day finally makes sense again.</p>
+    <h2 class="victory-title">STORY FIXED</h2>
 
-  <p>A final message appears:</p>
-  <p class="quote">“Nice. You actually fixed it.”</p>
+    <p class="victory-subtitle">You restored the timeline.</p>
 
-  <p><strong>You escaped the story!</strong></p>
+    <div class="final-combo-display">
+      ${finalCombinationPieces.map(num => `<div class="combo-box">${num}</div>`).join("")}
+    </div>
 
-  <hr>
+    <div class="victory-badge-row">
+      <div class="victory-badge">✅ Order Restored</div>
+      <div class="victory-badge">✅ Story Repaired</div>
+      <div class="victory-badge">✅ Team Mission Complete</div>
+    </div>
 
-  <h2>FINAL CLUE</h2>
-  <p>
-    In order to truly win, you must find the lock,<br>
-    The final step before you stop the clock.<br>
-    Go to the place where visitors sign in,<br>
-    Where calls are answered and messages begin.<br>
-    Behind the desk at the front you’ll see,<br>
-    The person who keeps things running smoothly.<br>
-    Find them to finish your final task—<br>
-    They hold the lock you need to crack.
-  </p>
+    <div class="victory-message">
+      <p>Everything snaps back into place.</p>
+      <p>The bell rings at the right time.</p>
+      <p>Classes happen in the right order.</p>
+      <p>The day finally makes sense again.</p>
 
-  <p><strong>But wait… before they give it to you, take note:</strong></p>
+      <p>A final message appears:</p>
+      <p class="quote">“Nice. You actually fixed it.”</p>
 
-  <p>You must say this sentence they wrote:</p>
+      <p><strong>You escaped the story!</strong></p>
 
-  <p class="quote">
-    “The code is cracked, the story is back, now we are here to claim the snack!”
-  </p>
+      <hr>
+
+      <h2>FINAL CLUE</h2>
+
+      <p>
+        In order to truly win, you must find the lock,<br>
+        The final step before you stop the clock.<br>
+        Go to the place where visitors sign in,<br>
+        Where calls are answered and messages begin.<br>
+        Behind the desk at the front you’ll see,<br>
+        The person who keeps things running smoothly.<br>
+        Find them to finish your final task—<br>
+        They hold the lock you need to crack.
+      </p>
+
+      <div class="final-password-line">
+        Before they give it to you, say:<br><br>
+        “The code is cracked, the story is back, now we are here to claim the snack!”
+      </div>
+    </div>
+  </div>
 `;
 
 const stagesContainer = document.getElementById("stagesContainer");
@@ -179,7 +192,7 @@ function renderStages() {
         <p class="success">Story fragment restored.</p>
         <p class="lock-number">The part repaired reveals number ${stage.lockNumber}.</p>
         <p>${stage.story}</p>
-        <p><strong>Next Clue:</strong><br>${stage.clue}</p>
+        <p><strong>Next Clue:</strong><br><br>${stage.clue}</p>
       `;
     } else {
       card.innerHTML = `
@@ -213,16 +226,7 @@ function renderFinalLock() {
   card.className = "final-lock-card";
 
   if (finalUnlocked) {
-    card.innerHTML = `
-      <h2>🏆 Final Sequence Restored</h2>
-      <p class="success">Correct combination accepted.</p>
-
-      <div class="final-combo-display">
-        ${finalCombinationPieces.map(num => `<div class="combo-box">${num}</div>`).join("")}
-      </div>
-
-      ${finalSuccessStory}
-    `;
+    card.innerHTML = finalSuccessStory;
   } else {
     card.innerHTML = `
       <h2>🔐 Final Lock Screen</h2>
@@ -282,7 +286,7 @@ function checkPassword(index) {
       <p class="success">Story fragment restored.</p>
       <p class="lock-number">The part repaired reveals number ${stages[index].lockNumber}.</p>
       <p>${stages[index].story}</p>
-      <p><strong>Next Clue:</strong><br>${stages[index].clue}</p>
+      <p><strong>Next Clue:</strong><br><br>${stages[index].clue}</p>
     `;
 
     setTimeout(renderStages, 1100);

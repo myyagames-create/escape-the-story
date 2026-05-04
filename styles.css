@@ -421,6 +421,17 @@ main {
   animation: cardIn .5s ease both;
 }
 
+/* Updated: stage unlock text now matches the terminal/story malfunction style */
+.stage-card {
+  font-family: "Courier New", monospace;
+  line-height: 1.45;
+  color: #dfefff;
+}
+
+.stage-card h2 {
+  font-family: Inter, Arial, Helvetica, sans-serif;
+}
+
 .stage-card::before {
   content: "LOCKED FILE";
   position: absolute;
@@ -430,6 +441,7 @@ main {
   font-size: .8rem;
   letter-spacing: 4px;
   font-weight: 900;
+  font-family: Inter, Arial, Helvetica, sans-serif;
 }
 
 @keyframes cardIn {
@@ -480,6 +492,7 @@ input:focus {
   color: var(--gold);
   font-size: 1.45rem;
   font-weight: 900;
+  font-family: Inter, Arial, Helvetica, sans-serif;
 }
 
 .final-lock-card {
@@ -503,6 +516,87 @@ input:focus {
   font-size: 2rem;
   font-weight: 900;
   background: rgba(0,0,0,.35);
+}
+
+.victory-card {
+  text-align: center;
+  padding: 32px;
+  border-radius: 28px;
+  background:
+    radial-gradient(circle at top, rgba(255,209,102,.22), transparent 35%),
+    linear-gradient(145deg, rgba(0,245,255,.10), rgba(255,77,109,.08));
+  border: 1px solid rgba(255,209,102,.45);
+  box-shadow:
+    0 0 60px rgba(255,209,102,.18),
+    inset 0 0 40px rgba(255,255,255,.04);
+  animation: victoryGlow 3s infinite alternate ease-in-out;
+}
+
+@keyframes victoryGlow {
+  from {
+    box-shadow:
+      0 0 40px rgba(0,245,255,.18),
+      inset 0 0 40px rgba(255,255,255,.04);
+  }
+  to {
+    box-shadow:
+      0 0 85px rgba(255,209,102,.28),
+      inset 0 0 50px rgba(255,255,255,.06);
+  }
+}
+
+.victory-title {
+  font-size: clamp(2.1rem, 6vw, 4.5rem);
+  margin: 10px 0;
+  color: var(--gold);
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  text-shadow:
+    0 0 18px rgba(255,209,102,.8),
+    0 0 45px rgba(0,245,255,.35);
+}
+
+.victory-subtitle {
+  color: var(--green);
+  font-size: 1.25rem;
+  font-weight: 900;
+}
+
+.victory-badge-row {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin: 24px 0;
+}
+
+.victory-badge {
+  padding: 12px 16px;
+  border-radius: 999px;
+  border: 1px solid rgba(0,245,255,.45);
+  background: rgba(0,0,0,.28);
+  color: #eaffff;
+  font-weight: 900;
+  box-shadow: 0 0 20px rgba(0,245,255,.12);
+}
+
+.victory-message {
+  text-align: left;
+  max-width: 760px;
+  margin: 26px auto 0;
+  line-height: 1.7;
+  font-family: "Courier New", monospace;
+}
+
+.final-password-line {
+  margin-top: 24px;
+  padding: 20px;
+  border-radius: 20px;
+  background: rgba(0,0,0,.35);
+  border: 1px solid rgba(255,209,102,.35);
+  color: var(--gold);
+  font-weight: 900;
+  font-size: 1.15rem;
 }
 
 .reset-btn {
