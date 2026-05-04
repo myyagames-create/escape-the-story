@@ -971,4 +971,105 @@ body.erased {
   .reward-grid {
     grid-template-columns: 1fr;
   }
+}.clue-card {
+  font-family: "Courier New", monospace;
+  letter-spacing: 0.5px;
+  color: #eaffff;
+}
+
+.clue-card p {
+  font-family: "Courier New", monospace;
+  font-size: 1.2rem;
+  line-height: 1.8;
+  color: #eaffff;
+}.next-clue-box {
+  font-family: "Courier New", monospace;
+}
+
+.next-clue-box p {
+  font-family: "Courier New", monospace;
+  font-size: 1.05rem;
+  line-height: 1.8;
+  letter-spacing: 0.4px;
+  color: #dffcff;
+}
+.next-clue-title {
+  font-family: "Courier New", monospace;
+  letter-spacing: 4px;
+  font-weight: 900;
+}
+.final-mission-file {
+  font-family: "Courier New", monospace;
+}
+
+.final-mission-file p {
+  font-family: "Courier New", monospace;
+  font-size: 1.1rem;
+  line-height: 1.9;
+  letter-spacing: 0.5px;
+  color: #eaffff;
+}
+
+.final-mission-file h2 {
+  font-family: "Courier New", monospace;
+  letter-spacing: 5px;
+}
+.secret-sentence {
+  font-family: "Courier New", monospace;
+  letter-spacing: 1px;
+  line-height: 1.8;
+}
+/* FINAL FONT FIX — MAKE ALL CLUE TEXT MATCH STORY FIXED TERMINAL STYLE */
+
+.clue-card,
+.clue-card p,
+.next-clue-box,
+.next-clue-box p,
+.final-mission-file,
+.final-mission-file p,
+.secret-sentence {
+  font-family: "Courier New", Courier, monospace !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.2px !important;
+  line-height: 1.85 !important;
+  color: #f4fbff !important;
+}
+
+/* Clue #1 label */
+.clue-label {
+  font-family: "Courier New", Courier, monospace !important;
+  font-weight: 900 !important;
+  letter-spacing: 4px !important;
+}
+
+/* Next Clue label */
+.next-clue-title {
+  font-family: "Courier New", Courier, monospace !important;
+  font-weight: 900 !important;
+  letter-spacing: 4px !important;
+}
+
+/* Final Clue heading */
+.final-mission-file h2 {
+  font-family: "Courier New", Courier, monospace !important;
+  font-weight: 900 !important;
+  letter-spacing: 5px !important;
+  color: var(--gold) !important;
+}
+
+/* Secret phrase box */
+.secret-sentence,
+.secret-sentence strong {
+  font-family: "Courier New", Courier, monospace !important;
+  font-weight: 900 !important;
+  color: var(--green) !important;
+}
+
+/* Keep victory title cinematic, not terminal */
+.victory-title,
+.victory-kicker,
+.lock-accepted,
+.reward-tile,
+.reward-tile strong {
+  font-family: Inter, Arial, Helvetica, sans-serif !important;
 }
