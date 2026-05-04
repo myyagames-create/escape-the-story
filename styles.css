@@ -1072,4 +1072,127 @@ body.erased {
 .reward-tile,
 .reward-tile strong {
   font-family: Inter, Arial, Helvetica, sans-serif !important;
+}/* MAKE THE SYSTEM FEEL ALIVE */
+
+.hero-inner,
+.glass-panel,
+.clue-card,
+.stage-card,
+.next-clue-box,
+.final-lock-card,
+.final-mission-file {
+  animation: systemBreath 5s ease-in-out infinite;
+}
+
+@keyframes systemBreath {
+  0%, 100% {
+    box-shadow:
+      0 0 35px rgba(0,245,255,.12),
+      inset 0 0 25px rgba(255,255,255,.03);
+  }
+  50% {
+    box-shadow:
+      0 0 55px rgba(0,245,255,.24),
+      inset 0 0 35px rgba(255,255,255,.05);
+  }
+}
+
+.warning,
+.eraser-message,
+.next-clue-title,
+.clue-label {
+  animation: signalFlicker 3.5s infinite;
+}
+
+@keyframes signalFlicker {
+  0%, 100% { opacity: 1; }
+  88% { opacity: .65; }
+  90% { opacity: 1; }
+  94% { opacity: .4; }
+  96% { opacity: 1; }
+}
+
+.next-clue-box {
+  position: relative;
+  overflow: hidden;
+}
+
+.next-clue-box::after,
+.final-mission-file::after,
+.clue-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(0,245,255,.12),
+    transparent
+  );
+  transform: translateX(-100%);
+  animation: dataSweep 5s infinite;
+  pointer-events: none;
+}
+
+@keyframes dataSweep {
+  0% { transform: translateX(-100%); }
+  45% { transform: translateX(120%); }
+  100% { transform: translateX(120%); }
+}
+
+.clue-line {
+  display: block;
+  opacity: 0;
+  transform: translateY(8px);
+  animation: clueLineIn .55s ease forwards;
+}
+
+.clue-line:nth-child(1) { animation-delay: .1s; }
+.clue-line:nth-child(2) { animation-delay: .28s; }
+.clue-line:nth-child(3) { animation-delay: .46s; }
+.clue-line:nth-child(4) { animation-delay: .64s; }
+.clue-line:nth-child(5) { animation-delay: .82s; }
+.clue-line:nth-child(6) { animation-delay: 1s; }
+
+@keyframes clueLineIn {
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.stage-card.restored-alive {
+  animation: restoredPulse 1.1s ease, systemBreath 5s ease-in-out infinite;
+}
+
+@keyframes restoredPulse {
+  0% {
+    transform: scale(.98);
+    filter: brightness(1);
+  }
+  45% {
+    transform: scale(1.01);
+    filter: brightness(1.35);
+  }
+  100% {
+    transform: scale(1);
+    filter: brightness(1);
+  }
+}
+
+body.system-glitch {
+  animation: systemGlitch .45s ease;
+}
+
+@keyframes systemGlitch {
+  0% { transform: none; filter: none; }
+  20% { transform: translateX(-3px); filter: hue-rotate(25deg); }
+  40% { transform: translateX(3px); filter: contrast(1.25); }
+  60% { transform: translateX(-2px); }
+  100% { transform: none; filter: none; }
+}/* REMOVE DUPLICATE NEXT CLUE BEFORE FINAL LOCK */
+
+/* Hide Next Clue box ONLY on the last stage */
+.stage-card:last-of-type .next-clue-box {
+  display: none;
 }
