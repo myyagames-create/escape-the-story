@@ -443,14 +443,14 @@ main {
 }
 
 .stage-card {
-  font-family: Inter, Arial, Helvetica, sans-serif;
+  font-family: "Courier New", monospace;
   line-height: 1.6;
   color: #dfefff;
 }
 
 .stage-card p {
   font-size: 1.05rem;
-  letter-spacing: .25px;
+  letter-spacing: .2px;
 }
 
 .stage-card strong {
@@ -512,6 +512,7 @@ main {
   color: var(--cyan);
   background: rgba(0,0,0,.28);
   border: 1px solid rgba(0,245,255,.45);
+  font-family: Inter, Arial, Helvetica, sans-serif;
   font-weight: 900;
   letter-spacing: 3px;
   text-transform: uppercase;
@@ -521,6 +522,7 @@ main {
 .next-clue-box p {
   margin: 0;
   color: #eaffff;
+  font-family: Inter, Arial, Helvetica, sans-serif;
   font-size: 1.1rem;
   line-height: 1.75;
 }
