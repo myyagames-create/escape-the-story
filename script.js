@@ -92,24 +92,46 @@ const correctFinalCombination = "343626";
 const finalCombinationPieces = ["34", "36", "26"];
 
 const finalSuccessStory = `
-  <div class="victory-card">
-    <div class="badge">MISSION COMPLETE</div>
-
-    <h2 class="victory-title">STORY FIXED</h2>
-
-    <p class="victory-subtitle">You restored the timeline.</p>
-
-    <div class="final-combo-display">
-      ${finalCombinationPieces.map(num => `<div class="combo-box">${num}</div>`).join("")}
+  <div class="victory-screen">
+    <div class="victory-particles">
+      <span></span><span></span><span></span><span></span><span></span><span></span>
     </div>
 
-    <div class="victory-badge-row">
-      <div class="victory-badge">✅ Order Restored</div>
-      <div class="victory-badge">✅ Story Repaired</div>
-      <div class="victory-badge">✅ Team Mission Complete</div>
+    <div class="victory-kicker">System Fully Restored</div>
+
+    <h2 class="victory-title">Mission Complete</h2>
+
+    <p class="victory-subtitle">The story is back online.</p>
+
+    <div class="victory-combo-reveal">
+      ${finalCombinationPieces.map(num => `<div class="victory-number">${num}</div>`).join("")}
     </div>
 
-    <div class="victory-message">
+    <div class="lock-accepted">Lock Accepted</div>
+
+    <div class="reward-grid">
+      <div class="reward-tile">
+        <span class="reward-icon">🧩</span>
+        <strong>Order Restored</strong>
+        <p>The scrambled pieces finally make sense.</p>
+      </div>
+
+      <div class="reward-tile">
+        <span class="reward-icon">⚡</span>
+        <strong>Story Repaired</strong>
+        <p>The broken timeline has been fixed.</p>
+      </div>
+
+      <div class="reward-tile">
+        <span class="reward-icon">🏆</span>
+        <strong>Final Clue Unlocked</strong>
+        <p>Your team has earned the last mission.</p>
+      </div>
+    </div>
+
+    <div class="victory-story-file">
+      <p class="success">STORY FIXED</p>
+
       <p>Everything snaps back into place.</p>
       <p>The bell rings at the right time.</p>
       <p>Classes happen in the right order.</p>
@@ -119,9 +141,9 @@ const finalSuccessStory = `
       <p class="quote">“Nice. You actually fixed it.”</p>
 
       <p><strong>You escaped the story!</strong></p>
+    </div>
 
-      <hr>
-
+    <div class="final-mission-file">
       <h2>FINAL CLUE</h2>
 
       <p>
@@ -135,7 +157,7 @@ const finalSuccessStory = `
         They hold the lock you need to crack.
       </p>
 
-      <div class="final-password-line">
+      <div class="secret-sentence">
         Before they give it to you, say:<br><br>
         “The code is cracked, the story is back, now we are here to claim the snack!”
       </div>
@@ -312,7 +334,7 @@ function checkFinalCombination() {
     finalUnlocked = true;
     localStorage.setItem("escapeFinalUnlocked", "true");
 
-    playSuccessEffect();
+    playVictoryEffect();
 
     message.innerHTML = `
       <p class="success">Final sequence accepted. Story restored.</p>
@@ -347,6 +369,23 @@ function playSuccessEffect() {
     document.body.classList.remove("success-flash");
     flashOverlay.classList.remove("active");
   }, 800);
+}
+
+function playVictoryEffect() {
+  document.body.classList.add("success-flash");
+  flashOverlay.classList.add("active");
+
+  if (soundOn) {
+    beep(523, 0.09);
+    setTimeout(() => beep(659, 0.09), 120);
+    setTimeout(() => beep(784, 0.12), 240);
+    setTimeout(() => beep(1046, 0.18), 420);
+  }
+
+  setTimeout(() => {
+    document.body.classList.remove("success-flash");
+    flashOverlay.classList.remove("active");
+  }, 900);
 }
 
 function playErrorEffect() {
