@@ -1190,7 +1190,8 @@ body.system-glitch {
   40% { transform: translateX(3px); filter: contrast(1.25); }
   60% { transform: translateX(-2px); }
   100% { transform: none; filter: none; }
-}/* REMOVE DUPLICATE NEXT CLUE BEFORE FINAL LOCK */
+}
+/* REMOVE DUPLICATE NEXT CLUE BEFORE FINAL LOCK */
 
 /* Hide Next Clue box ONLY on the last stage */
 .stage-card:last-of-type .next-clue-box {
